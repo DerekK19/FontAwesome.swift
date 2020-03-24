@@ -243,7 +243,14 @@ public extension FontAwesome {
 // MARK: - Private
 
 private class FontLoader {
+    #if targetEnvironment(macCatalyst)
+    static var loadedFonts = [String]()
+    #endif
     class func loadFont(_ name: String) {
+        #if targetEnvironment(macCatalyst)
+        if loadedFonts.contains(name) { return }
+        loadedFonts.append(name)
+        #endif
         guard
             let fontURL = URL.fontURL(for: name) as CFURL?
             else { return }

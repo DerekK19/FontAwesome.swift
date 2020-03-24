@@ -35,6 +35,15 @@ class FontAwesomeTests: XCTestCase {
         XCTAssertNotNil(brandsFont, "Brands font should be loaded.")
     }
 
+    func testFontsShouldBeLoadedIfFontUsedTwice() {
+        let solidFont = UIFont.fontAwesome(ofSize: 200, style: .solid)
+        let regularFont = UIFont.fontAwesome(ofSize: 200, style: .regular)
+        let regularFontSmaller = UIFont.fontAwesome(ofSize: 100, style: .regular)
+        XCTAssertNotNil(solidFont, "Solid font should be loaded.")
+        XCTAssertNotNil(regularFont, "Regular font should be loaded.")
+        XCTAssertNotNil(regularFontSmaller, "Smaller regular font should be loaded.")
+    }
+
     func testIconFontShouldBeRegistered() {
         let label = UILabel()
         label.font = UIFont.fontAwesome(ofSize: 200, style: .brands)
